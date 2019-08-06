@@ -1,2 +1,6 @@
-Cookie: 客户端
-Session: 服务器
+Cookie: 存储在本地浏览器, 单个cookie一般不超过4k,重要数据最好加密
+Session: 存储在服务器,更安全,但会占用服务器资源,目前服务器性能较好,可以忽略影响
+关闭浏览器session立即失效,cookie根据expirydate控制
+目前常用的使用方式:
+(1) cookie 中保存session id, 具体信息保存在session. 请求时传递session id, 然后去session中获取信息
+(2) session 加密保存在cookie
