@@ -1,0 +1,39 @@
+controller方法的返回值
+1.返回ModelAndView 
+  需要方法结束时，定义ModelAndView，将model和view分别进行设置。 
+
+2 返回string
+  如果controller方法返回string，
+  1). 表示返回逻辑视图名。真正视图(jsp路径)=前缀+逻辑视图名+后缀 (前缀后缀在springMVC-servlet.xml配置)
+  2). redirect重定向：返回字符串格式为："redirect:queryItem.action"
+  3). forward页面转发：返回字符串格式为：“forward:queryItem.action”
+
+3 返回void
+  在controller方法形参上可以定义request和response，使用request或response指定响应结果：
+  1). 使用request转向页面，如下：request.getRequestDispatcher("页面路径").forward(request, response);
+  2). 也可以通过response页面重定向：response.sendRedirect("url")
+  3). 也可以通过response指定响应结果，例如响应json数据如下：
+      response.setCharacterEncoding("utf-8");
+      response.setContentType("application/json;charset=utf-8");
+      response.getWriter().write("json串");
+      
+package com.myServerSocket.controller;
+
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+@Controller
+public class helloWorld {
+
+    @RequestMapping("/helloworld")  //此处控制浏览器里访问路径 具体为：/ServerSocketDemo/helloworld
+    public void helloWorld(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        
+        //输出字符串
+        response.getWriter().append("hello world");
+
+    }
+}
