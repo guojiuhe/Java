@@ -5,3 +5,6 @@ bean两个属性
  当Spring 启动之后会把配置文件（<bean>）里的这些java类,new 一个对象,存在Spring 里,当我们写代码的时候就可以直接去用这些对象,而不用再去创建对象了.
  
  简言之,bean就是存在于Spring 容器中的对象
+
+<!-- 自动扫描指定包及其子包下的所有Bean类 -->
+<context:component-scan base-package="com.myServerSocket.controller"/>
