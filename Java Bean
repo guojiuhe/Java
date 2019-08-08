@@ -1,0 +1,7 @@
+Spring启动之前bean就是一个普通java类，但不是说所有的java类都是bean ,如果一个普通类想要成为bean必须要在配置文件里配置,就是说每一个bean都要对应一个java类文件
+bean两个属性
+ id：确定该Bean的唯一标识符，容器对Bean管理、访问、以及该Bean的依赖关系，都通过该属性完成。Bean的id属性在Spring 配置文件中是唯一的。    
+ class：指定该Bean的具体实现类.注意这里不能使接口.通常情况下,Spring会直接使用new关键字创建该Bean的实例,因此,这里必须提供Bean实现类的类名.
+ 当Spring 启动之后会把配置文件（<bean>）里的这些java类,new 一个对象,存在Spring 里,当我们写代码的时候就可以直接去用这些对象,而不用再去创建对象了.
+ 
+ 简言之,bean就是存在于Spring 容器中的对象
