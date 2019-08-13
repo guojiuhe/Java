@@ -1,0 +1,31 @@
+<mvc:annotation-driven/>
+相当于注册了DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter两个bean，配置一些messageconverter。
+即解决了@Controller注解的使用前提配置。
+
+
+<context:annotation-config/>
+如果你想使用@Autowired注解，那么就必须事先在 spring 容器中声明 AutowiredAnnotationBeanPostProcessor的Bean.
+如果想使用@Resource ,@PostConstruct,@PreDestroy等注解就必须声明CommonAnnotationBeanPostProcessor的Bean.
+如果想使用@PersistenceContext注解，就必须声明PersistenceAnnotationBeanPostProcessor的Bean.
+如果想使用 @Required的注解，就必须声明RequiredAnnotationBeanPostProcessor的Bean.
+
+使用<context:annotation- config/>隐式地向 Spring容器注册这4个BeanPostProcessor.
+即<context:annotation-config/>是用来使上述注解起作用的，也就是说激活已经在application context中注册的bean. 
+之所以这样说是因为<context:annotation-config/>仅能够对在spring容器中已经注册过的bean起作用.
+对于没有在spring容器中注册的bean，它并不能执行任何操作,也就是说如果你并没有spring容器中注册过bean（spring配置文件中配置bean就是注册），
+那么上述的那些注解并不会在你未注册过的bean中起作用.
+总结：没有注册成bean，上述注解不起作用.
+
+
+
+<context:component-scan>
+<context:component-scan>做了<context:annotation-config>要做的事情，还额外支持@Component，@Repository，@Service，@Controller注解.
+并且<context:component-scan>扫描base-package并且在applicationcontext中注册扫描的beans.
+所以配置<context:component-scan>就不需要配置<context:annotation- config/>
+通常情况下我们在创建spring项目的时候在xml配置文件中都会配置这个标签，配置完这个标签后，
+spring就会去自动扫描base-package对应的路径或者该路径的子包下面的java文件，
+如果扫描到文件中带有@Service,@Component,@Repository,@Controller等这些注解的类，则把这些类注册为bean 
+注：在注解后加上例如@Component(value=”abc”)时，注册的这个类的bean的id就是abc.
+<context:annotation-config/>还提供了两个子标签
+1. <context:include-filter>
+2. <context:exclude-filter>
