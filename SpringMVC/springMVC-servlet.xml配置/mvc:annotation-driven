@@ -29,3 +29,19 @@ spring就会去自动扫描base-package对应的路径或者该路径的子包�
 <context:annotation-config/>还提供了两个子标签
 1. <context:include-filter>
 2. <context:exclude-filter>
+
+
+<!-- 启用spring mvc 注解 -->
+  	<context:annotation-config />
+  	<mvc:annotation-driven/>
+  	
+ 	<!-- 自动扫描指定包及其子包下的所有Bean类 -->
+ 	<context:component-scan base-package="com.utils.controller"/>
+ 	<context:component-scan base-package="com.test.controller"/>
+
+<!-- 视图解析器 -->
+ 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+    	<property name="prefix" value="/WEB-INF/view/"/>
+    	<property name="suffix" value=".jsp"/>
+	</bean>
