@@ -34,6 +34,9 @@ byte,short,char—> int —> long—> float —> double
   在java的世界里，如果比int类型小的类型做运算，java在编译的时候就会将它们统一强转成int类型。
   当是比int类型大的类型做运算，就会自动转换成它们中最大类型那个。
   
+原始类型: boolean，char，byte，short，int，long，float，double
+包装类型：Boolean，Character，Byte，Short，Integer，Long，Float，Double
+从Java 5开始引入了自动装箱/拆箱机制，使得二者可以相互转换。
   
   
   2. 引用数据类型
